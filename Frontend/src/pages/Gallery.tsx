@@ -42,7 +42,7 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      
       
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-muted">
@@ -138,8 +138,7 @@ const Gallery = () => {
         </div>
       )}
 
-      <Footer />
-      <WhatsAppButton />
+    
     </div>
   );
 };

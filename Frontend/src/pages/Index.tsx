@@ -63,7 +63,7 @@ const stats = [
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <Header />
+     
       
       {/* Hero Section */}
       <section className="relative pt-20 min-h-screen flex items-center">
@@ -271,8 +271,8 @@ const Index = () => {
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton />
+     
+     
     </div>
   );
 };
