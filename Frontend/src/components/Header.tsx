@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logo from '@/assets/dp3.png';
+import topLogo from '@/assets/dp6.png';
+import scrolledLogo from '@/assets/dp3.png';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -20,14 +21,18 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
   const isHomePage = location.pathname === '/';
 
-  // Detect scroll
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 300);
+      setScrolled(window.scrollY > 50);
     };
+
     window.addEventListener('scroll', onScroll);
+
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const currentLogo = isHomePage && !scrolled ? topLogo : scrolledLogo;
+  const logoSize = isHomePage && !scrolled ? 'h-16 w-16' : 'h-24 w-24';
 
   const headerClass =
     isHomePage && !scrolled
@@ -44,11 +49,13 @@ const Header = () => {
           {/* LEFT SIDE */}
           <div className="flex items-center gap-6 pl-3 md:pl-0 md:-translate-x-6">
             <Link to="/" className="flex items-center gap-3 group">
-              <img
-                src={logo}
-                alt="Deon Plaza"
-                className="h-20 sm:h-20 md:h-24 lg:h-28 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-sm"
-              />
+              <span className="h-24 w-24 mr-6 flex items-center justify-center">
+                <img
+                  src={currentLogo}
+                  alt="Deon Plaza"
+                  className={`object-contain ${logoSize}`}
+                />
+              </span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-2">
@@ -77,6 +84,20 @@ const Header = () => {
 
           {/* RIGHT SIDE */}
           <div className="hidden md:flex items-center gap-3">
+
+            <Link to="/login">
+              <Button
+                variant="outline"
+                className={
+                  isHomePage && !scrolled
+                    ? 'border-white text-white bg-white/20 hover:bg-white hover:text-black backdrop-blur-sm'
+                    : 'border-primary text-primary hover:bg-primary hover:text-white'
+                }
+              >
+                Login Portal
+              </Button>
+            </Link>
+
             <Link to="/book-appointment">
               <Button className="btn-primary-gradient shadow-md">
                 Book Appointment
@@ -96,9 +117,10 @@ const Header = () => {
                 <Phone className="h-4 w-4" />
               </Button>
             </a>
+
           </div>
 
-          {/* Mobile button */}
+          {/* MOBILE BUTTON */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`md:hidden p-2 rounded-lg transition-colors ${
@@ -107,14 +129,20 @@ const Header = () => {
                 : 'hover:bg-black/10 text-black'
             }`}
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
+
         </div>
 
-        {/* Mobile menu */}
+        {/* MOBILE MENU */}
         {isOpen && (
           <div className="md:hidden py-4 mt-2 rounded-xl bg-black/40 backdrop-blur-md">
             <nav className="flex flex-col gap-2 px-2">
+
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -131,14 +159,23 @@ const Header = () => {
               ))}
 
               <Link
+                to="/login"
+                onClick={() => setIsOpen(false)}
+              >
+                <Button className="w-full mt-2" variant="outline">
+                  Login Portal
+                </Button>
+              </Link>
+
+              <Link
                 to="/book-appointment"
                 onClick={() => setIsOpen(false)}
-                className="mt-2"
               >
-                <Button className="btn-primary-gradient w-full">
+                <Button className="btn-primary-gradient w-full mt-2">
                   Book Appointment
                 </Button>
               </Link>
+
             </nav>
           </div>
         )}

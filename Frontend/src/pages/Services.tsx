@@ -156,7 +156,7 @@ const services = [
 const Services = () => {
   return (
     <div className="min-h-screen">
-      <Header />
+   
       
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-muted">
@@ -264,8 +264,7 @@ const Services = () => {
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton />
+      
     </div>
   );
 };

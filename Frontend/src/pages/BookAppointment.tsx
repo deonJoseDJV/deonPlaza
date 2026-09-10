@@ -130,7 +130,7 @@ const BookAppointment = () => {
 
   return (
     <div className="min-h-screen">
-      <Header />
+     
       
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-muted">
@@ -380,8 +380,7 @@ const BookAppointment = () => {
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton />
+     
     </div>
   );
 };

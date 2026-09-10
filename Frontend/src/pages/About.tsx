@@ -1,9 +1,7 @@
 import { CheckCircle2, Users, Target, Award } from 'lucide-react';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
 import SectionHeading from '@/components/SectionHeading';
-import heroImage from '@/assets/deonplaza.jpeg';
+import heroImage from '@/assets/dp2.jpeg';
 
 const values = [
   {
@@ -170,8 +168,6 @@ const About = () => {
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton />
     </div>
   );
 };
