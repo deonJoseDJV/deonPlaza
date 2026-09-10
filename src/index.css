@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DEON PLAZA Design System
+   Colors extracted from logo: Coral Red, Black, Cream/Light Gray
+   Typography: Modern geometric sans-serif
+*/
+
+@layer base {
+  :root {
+    /* Core brand colors from DEON PLAZA logo */
+    --background: 40 20% 98%;
+    --foreground: 0 0% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 12%;
+
+    /* Coral Red - Primary brand color */
+    --primary: 6 78% 57%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Charcoal - Secondary color */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Cream/Light backgrounds */
+    --muted: 40 20% 95%;
+    --muted-foreground: 0 0% 40%;
+
+    /* Accent - lighter coral */
+    --accent: 6 78% 95%;
+    --accent-foreground: 6 78% 40%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 88%;
+    --input: 40 15% 90%;
+    --ring: 6 78% 57%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --coral: 6 78% 57%;
+    --coral-dark: 6 78% 45%;
+    --coral-light: 6 78% 92%;
+    --charcoal: 0 0% 15%;
+    --cream: 40 20% 96%;
+    --cream-dark: 40 15% 92%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(6, 78%, 57%) 0%, hsl(6, 78%, 45%) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(0, 0%, 15%) 0%, hsl(0, 0%, 8%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(40, 20%, 98%) 0%, hsl(40, 20%, 94%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(0 0% 0% / 0.08);
+    --shadow-md: 0 8px 24px -8px hsl(0 0% 0% / 0.12);
+    --shadow-lg: 0 16px 48px -12px hsl(0 0% 0% / 0.18);
+    --shadow-coral: 0 8px 32px -8px hsl(6 78% 57% / 0.35);
+
+    /* Sidebar - not used but keeping for compatibility */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 25%;
+    --sidebar-primary: 6 78% 57%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 40 20% 95%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 40 15% 88%;
+    --sidebar-ring: 6 78% 57%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-coral-dark;
+  }
+
+  .geometric-accent {
+    position: relative;
+  }
+
+  .geometric-accent::before {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 3px solid hsl(var(--primary));
+    transform: rotate(45deg);
+    opacity: 0.15;
+    z-index: -1;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-2;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-primary-gradient {
+    background: var(--gradient-primary);
+    @apply text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  .btn-primary-gradient:hover {
+    box-shadow: var(--shadow-coral);
+    transform: translateY(-2px);
+  }
+
+  /* Geometric triangle decoration inspired by logo */
+  .triangle-decoration {
+    position: relative;
+  }
+
+  .triangle-decoration::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 35px solid hsl(var(--primary) / 0.1);
+    top: -20px;
+    right: -10px;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+}
